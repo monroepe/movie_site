@@ -9,7 +9,7 @@ def all_movies
     header_converters: :symbol) do |row|
     movies << row.to_hash
   end
-  movies
+  movies.sort_by{|key, value| key[:title]}
 end
 
 def get_movies_by_id(movies)
@@ -20,9 +20,13 @@ def get_movies_by_id(movies)
 all_movies
 end
 
+def paginator(movies, page)
 
-movies = all_movies.sort_by{|key, value| key[:title]}
-movie_ids = get_movies_by_id(movies)
+
+end
+
+movies = all_movies
+movie_ids = get_movies_by_id(all_movies)
 
 
 
