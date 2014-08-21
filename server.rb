@@ -20,18 +20,19 @@ def get_movies_by_id(movies)
 all_movies
 end
 
-def paginator(movies, page)
-
-
+def paginator(movies, page=0 )
+  start = (page.to_i * 20)
+  movies.slice(start, 20)
 end
 
 movies = all_movies
 movie_ids = get_movies_by_id(all_movies)
 
 
-
 get '/' do
-  erb :movie_list, locals: {movies: movies}
+  length = (movies.length/20)
+  movies = paginator(movies, 0)
+  erb :movie_list, locals: {movies: movies, length: length}
 end
 
 get '/movies/:movie_id' do
